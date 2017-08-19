@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<title>Sign Up</title>
+<head>
+    {% load static %}
+    <link href="{% static 'assets/style.css'%}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+
+    <style>
+    #logo h2 {
+    font-size: 30px;
+    margin: 40px 0 0 0;
+
+    }
+        .facb{
+    width: 25px;
+    height: 25px;
+    margin: 0 10px 0 0;
+  }
+  .gog{
+    width: 25px;
+    height: 25px;
+    margin: 0 10px 0 0;
+  }
+    .txxt{
+    font-size: 10px;
+    color: grey;
+
+    font-family: 'droid serif',serif;
+    margin: 8px 0 0 30px;
+  }
+  .btn-info{
+  margin: 10px 0 250px 0;
+}
+.int{
+            margin: 15px 0 18px 0;
+            color:darkblack;
+            font-size: 65px;
+            float:right;}
+
+
+    </style>
+
+</head>
+<body>
+<div class="container-fluid">
+
+      <!--Header starts-->
+
+      <div class="row">
+        <section id="logo">
+          <div class="col-md-12">
+            <div class="col-md-6 col-xs-12">
+               <div class="col-md-2">
+            <i class="fa fa-instagram int "></i>
+                  </div>
+              <div class="col-md-6">
+                  <h2 style="color:black" class="txt" ><span style="color:#0e90d2">Instagram</span> Clone</h2>
+          </div>
+            </div>
+           <div class="col-md-6 col-xs-12">
+             <p>Already Registered? <a href="login">Login </a>here</p>
+           </div>
+         </div>
+       </section>
+      </div>
+
+  <!--header ends-->
+
+
+    <!--Form starts-->
+
+  <div class="row">
+    <section id="login">
+      <h1> Sign Up</h1>
+    </section>
+  </div>
+  </div>
+
+
+<div class="col-md-8">
+   <form method="post">
+   {% csrf_token %}
+
+
+  <div class="row">
+      <br>
+    <div class="col-md-6">
+      <h5 class="nod">Username:</h5>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <input class="form-control" id="username" type="text" name="username" placeholder="Enter your username" value={{ username }}><br>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="nod">Name:</h5>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+       <input class="form-control" id="name" type="text" name="name" placeholder="Enter your name" value={{ name }}><br>
+      </div>
+    </div>
+  </div>
+
+      <div class="row">
+    <div class="col-md-6">
+      <h5 class="nod">Email:</h5>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <input class="form-control" id="email" type="text" name="email" placeholder="Enter your email" value={{ email }}><br>
+      </div>
+    </div>
+  </div>
+
+
+      <div class="row">
+    <div class="col-md-6">
+      <h5 class="nod">Password:</h5>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+       <input class="form-control" id="password" type="password" name="password" placeholder="Enter your password" value={{ password }}>
+      </div>
+    </div>
+  </div>
+
+         <div class="row">
+      <div class="col-md-7">
+
+      </div>
+      <div class="col-md-5">
+          {% if messages %}
+<div class="row">
+    {% for message in messages %}
+    <span style="color:green" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
+    {% endfor %}
+
+
+</div>
+
+{% endif %}
+      </div>
+    </div>
+
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="nod"></h5>
+    </div>
+    <div class="col-md-6">
+       <button style="float:right" type="submit" name="submit" class="btn btn-info">Sign Up</button>
+    </div>
+  </div>
+</form>
+</div>
+
+  <div class="col-md-4">
+    <p class="txt">
+      Fill my details from
+    </p>
+    <div class="row">
+     <a href="#"><button class="facebook">  <img class="facb"src="{% static 'assets/img/f.png'%}"  /> Facebook</button></a>
+     <a href="#"><button class="twitter">  <img class="gog" src="{% static 'assets/img/gg.png'%}" />Google</button></a>
+    </div>
+    <div class="row">
+     <div class="col-md-7">
+      <p class="txxt">
+        We will not post anything without your permission.
+      </p>
+     </div>
+    </div>
+      <h4>{{today}}</h4>
+  </div>
+
+
+
+</div>
+
+<!--Form ends-->
+
+
+</div>
+
+<!--footer starts-->
+
+<div class="col-md-12 ft">
+ <div class="row" >
+  <footer>
+   <div class="col-md-4">
+     <div class="links">
+       <a href="#"><h6 style="display:inline-block">About Us </h6></a>
+       <a href="#"><h6 style="display:inline-block">Contact Us </h6></a>
+         <a href="#"><h6 style="display:inline-block">Terms & conditions </h6></a>
+     </div>
+  </div>
+  <div class="col-md-4">
+   <p class="foot">
+     All rights reserved © 2017 Excellence technology India Ltd.
+   </p>
+  </div>
+   <div class="col-md-4 ">
+    <div class="social">
+     <i class="fa fa-facebook-square" aria-hidden="true"></i>
+     <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
+     <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+     <i class="fa fa-twitter" aria-hidden="true"></i>
+     <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+    </div>
+   </div>
+  </footer>
+ </div>
+</div>
+<!--Footer ends-->
+
+
+
+
+</body>
+</html>

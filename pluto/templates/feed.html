@@ -1,0 +1,170 @@
+<html>
+ <title>Feed</title>
+    <head>
+        {% load static %}
+    <link href="{% static 'assets/feed.css'%}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
+
+        <style>
+      .int{
+            margin: 15px 0 15px 200px;
+            color:darkblack;
+            font-size: 50px;
+
+
+            }
+         #feed{
+         margin: 0 auto;
+         width:600px;
+
+
+
+         }
+         h3{
+         float:left;
+         margin:100px 0 15px 0;
+         }
+         h6{
+         font-size:20px;
+
+
+         }
+         .logout{
+         font-size:20px;
+
+         margin:10px 0 0 0;
+         }
+         .logoutt{
+         font-size:25px;
+         color:rgba(0,0,0,.8);
+         margin:10px 0 0 0;
+         }
+         .foot{
+         margin:570px 0 0 0;
+         }
+         .social{
+         font-size:25px;
+         margin:10px 0  15px 0;
+         }
+         button{
+         float:left;
+
+         }
+         .form-control{
+         width:30%;
+         margin:0 0 0 10px;
+         }
+
+
+
+        </style>
+
+    </head>
+    <body>
+
+     <!--Navbar starts-->
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+   <div class="container-fluid">
+     <div class="navbar-header">
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+       <section id="logo">
+
+      </section>
+     </div>
+
+     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-centre">
+          <li><i class="fa fa-instagram int"></i></li>
+          <li  ><a href="#" ><h2 class="logoutt">Instagram Clone</h2> </a></li>
+
+
+      </ul>
+     <ul class="nav navbar-nav navbar-right">
+         <li class="logout"><a href="post.html"> <button class="btn btn-success " value="Log In">Create New Post</button></a></li>
+         <li class="logout"><a href="login.html"><button  class="btn btn-info" value="Log In"><span class="glyphicon glyphicon-log-in"></span> Logout</button></a></li>
+
+     </ul>
+     </div>
+   </div>
+ </nav>
+
+
+<!--Navbar ends-->
+
+  <div class="container">
+    <section id="feed">
+
+
+        {% for post in posts %}
+        <h3 >
+            Posted by:{{ post.user.username }}
+        </h3>
+        <img src="{{ post.image_url }}" height=600 width=600 style="margin:0 0 15px 0">
+        <div style="margin:0 0 0 520px">
+          Caption:{{ post.caption }}
+        </div>
+        <div style="margin:-20px 520px 0 0">
+            {{ post.like_count }}. like this
+        </div>
+        <form method="POST" action="/like/">
+          {% csrf_token %}
+          <input type="hidden" name="post" value="{{ post.id }}">
+            <button type="submit" class="btn btn-default" style="  margin:10px 0 0 10px" ><i class="fa fa-thumbs-up" style="margin:0 5px 0 0"></i>Like</button>
+        </form>
+        <form method="POST" action="/comment/">
+            {% csrf_token %}
+             <input type="hidden" name="post" value="{{ post.id }}" >
+            <input type="text" class="form-control" name="comment_text" id="comment_text" placeholder="Make a comment.." value="{{ comment_text }}" style="margin:-5px 330px 0 5px">
+           {{ comment_text }}
+            <button type="submit" class="btn-default btn" style="  margin:-35px 0 0 190px"  ><i class="fa fa-comment" style="margin:0 5px 0 0"></i>Comment</button>
+         </form>
+         <div>
+         {% for comment in post.comments %}
+
+
+         <p ><span style="margin:0 100px 0 0">
+           {{ comment.user.username }}:
+             {{ comment.comment_text }}</span><span style="float:right">{{ comment.created_on }}</span>
+         </p>
+
+
+      {% endfor %}
+
+
+      </div>
+
+
+        {% endfor %}
+
+        <h3>You don't have more posts please create a new post</h3>
+
+        </section>
+    <div class="row">
+        <p class="foot">
+     All rights reserved © 2017 Acadview technology India Ltd.
+   </p>
+        <div class="social">
+     <i class="fa fa-facebook-square" aria-hidden="true"></i>
+     <i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
+     <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+     <i class="fa fa-twitter" aria-hidden="true"></i>
+     <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+    </div>
+
+
+
+    </div>
+
+
+      </div>
+
+    </body>
+</html>
